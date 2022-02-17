@@ -909,12 +909,9 @@ function addon:OnEnable()
 		ScanBag(bagID)
 	end
 	ScanKeyRing()
-	
 	addon:RegisterEvent("BAG_UPDATE", OnBagUpdate)
 	addon:RegisterEvent("BANKFRAME_OPENED", OnBankFrameOpened)
 	addon:RegisterEvent("GUILDBANKFRAME_OPENED", OnGuildBankFrameOpened)
-
-	
 end
 
 function addon:OnDisable()
