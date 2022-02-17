@@ -901,8 +901,6 @@ function addon:OnInitialize()
 	addon:RegisterMessage("DATASTORE_ANNOUNCELOGIN", OnAnnounceLogin)
 	addon:RegisterMessage("DATASTORE_GUILD_MEMBER_OFFLINE", OnGuildMemberOffline)
 	addon:RegisterComm(commPrefix, DataStore:GetGuildCommHandler())
-
-	OnPersonalBankUpdate() -- runs add personalbank to guild list
 end
 
 function addon:OnEnable()
@@ -911,12 +909,9 @@ function addon:OnEnable()
 		ScanBag(bagID)
 	end
 	ScanKeyRing()
-	
 	addon:RegisterEvent("BAG_UPDATE", OnBagUpdate)
 	addon:RegisterEvent("BANKFRAME_OPENED", OnBankFrameOpened)
 	addon:RegisterEvent("GUILDBANKFRAME_OPENED", OnGuildBankFrameOpened)
-
-	
 end
 
 function addon:OnDisable()
@@ -924,23 +919,4 @@ function addon:OnDisable()
 	addon:UnregisterEvent("BANKFRAME_OPENED")
 	addon:UnregisterEvent("GUILDBANKFRAME_OPENED")
 	addon:UnregisterEvent("CHAT_MSG_ADDON")
-end
-
-local function GetKey(name, realm, account)
-	-- default values
-	name = name or UnitName("player")
-	realm = realm or GetRealmName()
-	account = account or THIS_ACCOUNT
-	
-	return format("%s.%s.%s", account, realm, name)
-end
-
-local function OnPersonalBankUpdate()
-	-- Adds player personalbank as a fake guild to be viewed in aloholic
-		local currentGuildName
-		currentGuildName = UnitName("player") .. "'s PersonalBank"
-		Guilds[GetKey(currentGuildName)].faction = UnitFactionGroup("player")
-		Characters[GetKey()].guildName = currentGuildName
-		currentGuildName = GetGuildInfo("player")
-		Characters[GetKey()].guildName = currentGuildName
 end
