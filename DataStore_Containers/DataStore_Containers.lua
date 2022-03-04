@@ -547,22 +547,25 @@ local function OnPersonalBankBagSlotsChanged()
 end
 
 local function GuildBankSelected(event, prefix,message,form,player)
-				
 	if message:find("cxsbGw") then
 		addon:RegisterEvent("GUILDBANKBAGSLOTS_CHANGED", OnGuildBankBagSlotsChanged) -- Runs when GUILDBANKBAGSLOTS_CHANGED is run and guildbank is open
 		OnGuildBankBagSlotsChanged() -- Update guildbank when its opened
 	elseif message:find("cxwbGw") then
 		addon:RegisterEvent("GUILDBANKBAGSLOTS_CHANGED", OnPersonalBankBagSlotsChanged) -- Runs when GUILDBANKBAGSLOTS_CHANGED is run and personalbank is open
 		OnPersonalBankBagSlotsChanged()	-- Update personalbank when its opened
-	end
-				
+	end			
 end
 
 local function OnGuildBankFrameOpened()
 	addon:RegisterEvent("GUILDBANKFRAME_CLOSED", OnGuildBankFrameClosed)
-	addon:RegisterEvent("CHAT_MSG_ADDON", GuildBankSelected) -- Ascension Addon that tells you if guildbank or personalbank is open
-
-
+	--addon:RegisterEvent("CHAT_MSG_ADDON", GuildBankSelected) -- Ascension Addon that tells you if guildbank or personalbank is open
+	if GuildBankFrame and GuildBankFrame.IsPersonalBank then
+		addon:RegisterEvent("GUILDBANKBAGSLOTS_CHANGED", OnPersonalBankBagSlotsChanged) -- Runs when GUILDBANKBAGSLOTS_CHANGED is run and personalbank is open
+		OnPersonalBankBagSlotsChanged()	-- Update personalbank when its opened
+	else
+		addon:RegisterEvent("GUILDBANKBAGSLOTS_CHANGED", OnGuildBankBagSlotsChanged) -- Runs when GUILDBANKBAGSLOTS_CHANGED is run and guildbank is open
+		OnGuildBankBagSlotsChanged() -- Update guildbank when its opened
+	end
 end
 
 -- ** Mixins **
