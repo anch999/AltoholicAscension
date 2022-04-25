@@ -6,7 +6,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 
 local addonList = {
 	"DataStore",
-	"DataStore_Achievements",
+--	"DataStore_Achievements",
 	"DataStore_Auctions",
 	"DataStore_Characters",
 	"DataStore_Containers",
