@@ -604,17 +604,20 @@ end
 
 local function OnGuildBankBagSlotsChanged()
 	local thisGuild = GetThisGuild()
+	if GetGuildBankTabInfo(GetCurrentGuildBankTab()) then
 		if thisGuild then
 			thisGuild.money = GetGuildBankMoney()
 			thisGuild.faction = UnitFactionGroup("player")
 		end
-		
+
 		ScanContainer(GetCurrentGuildBankTab(), GUILDBANK)
 		ScanGuildBankInfo()
+	end
 end
 
-local function OnPersonalBankBagSlotsChanged()	
+local function OnPersonalBankBagSlotsChanged()
 	local thisGuild = GetThisPersonalBank()
+	if GetGuildBankTabInfo(GetCurrentGuildBankTab()) then
 		if thisGuild then
 			thisGuild.money = 0
 			thisGuild.faction = UnitFactionGroup("player")
@@ -622,10 +625,12 @@ local function OnPersonalBankBagSlotsChanged()
 
 		ScanPersonalBank(GetCurrentGuildBankTab(), GUILDBANK)
 		ScanPersonalBankInfo()
+	end
 end
 
-local function OnRealmBankBagSlotsChanged()	
+local function OnRealmBankBagSlotsChanged()
 	local thisGuild = GetThisRealmBank()
+	if GetGuildBankTabInfo(GetCurrentGuildBankTab()) then
 		if thisGuild then
 			thisGuild.money = 0
 			thisGuild.faction = UnitFactionGroup("player")
@@ -633,6 +638,7 @@ local function OnRealmBankBagSlotsChanged()
 		
 		ScanRealmBank(GetCurrentGuildBankTab(), GUILDBANK)
 		ScanRealmBankInfo()
+	end
 end
 
 local function OnGuildBankFrameOpened()
@@ -642,7 +648,7 @@ local function OnGuildBankFrameOpened()
 			OnPersonalBankBagSlotsChanged()	-- Update personalbank when its opened
 		elseif GuildBankFrame and GuildBankFrame.IsRealmBank then
 			addon:RegisterEvent("GUILDBANKBAGSLOTS_CHANGED", OnRealmBankBagSlotsChanged) -- Runs when GUILDBANKBAGSLOTS_CHANGED is run and personalbank is open
-			OnRealmBankBagSlotsChanged()	-- Update realmbank when its opened
+			OnRealmBankBagSlotsChanged() -- Update realmbank when its opened
 		else
 			addon:RegisterEvent("GUILDBANKBAGSLOTS_CHANGED", OnGuildBankBagSlotsChanged) -- Runs when GUILDBANKBAGSLOTS_CHANGED is run and guildbank is open
 			OnGuildBankBagSlotsChanged() -- Update guildbank when its opened
