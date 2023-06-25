@@ -140,6 +140,19 @@ local currencyIDs = {
 	[44990] = true,		-- champion's seal
 	[43308] = true,		-- honor points
 	[37836] = true,		-- venture coin
+
+	-- Ascension specific
+	[375250] = true,	-- Mark of Ascension
+	[98462] = true,		-- Mystic Rune
+	[98570] = true,		-- Mystic Orb
+	[383082] = true,	-- Ability Purge
+	[383083] = true,	-- Talent Purge
+	[246190] = true,	-- Darkmoon Ticket
+	[97399] = true,		-- Golden Darkmoon Ticket
+	[1101243] = true,	-- Scroll of Talent Unlearning
+	[1414500] = true,	-- Mythic Coin
+	[400750] = true,	-- Raider's Commendation (Classic)
+	[400751] = true,	-- Raider's Commendation (TBC)
 }
 
 local function _GetCurrencyItemCount(character, searchedID)
