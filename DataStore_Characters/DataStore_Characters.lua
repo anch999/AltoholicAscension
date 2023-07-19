@@ -216,9 +216,11 @@ local function _GetRestXPRate(character)
 
 	if character.lastLogoutTimestamp ~= 0 then		-- time since last logout, 0 for current char, <> for all others
 		if character.isResting then
-			rate = rate + ((time() - character.lastLogoutTimestamp) / 8640)
+			-- rate = rate + ((time() - character.lastLogoutTimestamp) / 8640)
+			rate = rate + ((time() - character.lastLogoutTimestamp) / 1080) -- Ascension rested xp generates 8x faster than live
 		else
-			rate = rate + ((time() - character.lastLogoutTimestamp) / 34560)	-- 4 times less if not at an inn
+			-- rate = rate + ((time() - character.lastLogoutTimestamp) / 34560)	-- 4 times less if not at an inn
+			rate = rate + ((time() - character.lastLogoutTimestamp) / 4320)	-- 4x slower if not at an inn
 		end
 	end
 	return rate
