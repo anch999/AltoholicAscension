@@ -323,8 +323,8 @@
 						UIDropDownMenu_SetWidth(self, 150) 
 						UIDropDownMenu_SetButtonWidth(self, 20)
 						UIDropDownMenu_Initialize(self, Altoholic.Tabs.Search.DropDownLocation_Initialize)
-						UIDropDownMenu_SetSelectedValue(self, 2);
-						UIDropDownMenu_SetText(self, format("%s %s(%s)", L["This realm"], "|cFF00FF00", L["This faction"]))
+						UIDropDownMenu_SetSelectedValue(self, 3);
+						UIDropDownMenu_SetText(self, format("%s %s(%s)", L["This realm"], "|cFF00FF00", L["Both factions"]))
 					</OnLoad>
 				</Scripts>
 			</Frame>		
